@@ -11,4 +11,21 @@ model Cat {
   id    String @id @default(uuid())
   name  String
   age Int
+  trainingClasses TrainingClass[]
+}
+
+model Professor {
+  id String @id @default(uuid())
+  name String
+  trainingClasses TrainingClass[]
+}
+
+model TrainingClass {
+  id String @id @default(uuid())
+  startTime DateTime
+  endTime DateTime
+  professorId String
+  professor Professor @relation(fields: [professorId], references: [id])
+  catId String
+  cat Cat @relation(fields: [catId], references: [id])
 }
